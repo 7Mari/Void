@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+void titulo(){
+    printf("\t \n---TABUADA---\n");
+}
+
+void tabuada(int i , int numero){
+    for ( i = 1; i <= 10; i++)
+    {
+        printf("%d * %d = %d \n" ,numero ,i , i*numero);
+    }
+}
+int main(){
+
+    int i;
+    int numero;
+
+
+    printf("Digite um número: ");
+    scanf("%d" ,&numero);
+    system("cls||clear");
+
+    printf("\nNúmero Escolhido: %d\n" ,numero);
+    titulo();
+    tabuada(i ,numero);
+
+    
+    
+
+
+
+    return 0;
+}
