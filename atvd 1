@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+
+float mediaFinal(int a, int b){
+    float media;
+
+    media = (a + b) / (float) 2;
+    return media;
+}
+
+void titulo(){
+    printf("\t\n-----Valores-----\n");
+}  
+
+int main(){
+
+    int a;
+    int b;
+
+    titulo();
+
+    printf("Digite o 1° número: ");
+    scanf("%d" ,&a);
+
+    printf("Digite o 2° número: ");
+    scanf("%d" ,&b);
+
+
+    system("clear || cls");
+    
+//exibindo
+
+titulo();
+
+printf("Primeiro Número: %d\n" ,a);
+printf("Segundo Número: %d\n" ,b);
+
+printf("Média: %.2f \n" ,mediaFinal(a, b));
+
+
+
+
+
+
+
+
+
+    return 0;
+}
