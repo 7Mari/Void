@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+void titulo(){
+    printf("\n \t --Contas--\n");
+}
+
+int somar(numero){
+    int soma =0;
+    soma = numero + numero;
+    return soma;
+}
+
+int subtrair(numero){
+    int subtracao = 0;
+    subtracao = numero - numero;
+    return subtracao;
+}
+
+int dividir(numero){
+    int divisao = 0;
+    divisao = numero / numero;
+    return divisao;
+}
+
+int multiplicar(numero){
+    int multiplicacao = 0;
+    multiplicacao = numero * numero;
+    return multiplicacao;
+}
+
+int main(){
+    setlocale(LC_ALL, "portuguese");
+
+    int soma = 0;
+    int subtracao = 0;
+    int divisao = 0;
+    int multiplicacao = 0;
+    int i, numero;
+
+    for ( i = 0; i < 2; i++)
+    {
+        printf("Digite o %dº número: \n" ,i + 1);
+        scanf("%d" ,&numero);
+
+    }
+    system ("cls || clear");
+    //exibir
+
+    for ( i = 0; i < 2; i++)
+    {
+        printf("%dº Número: %d \n" ,i + 1, numero);
+    }
+
+    titulo();
+    soma = somar(numero);
+    subtracao = subtrair(numero);
+    multiplicacao = multiplicar(numero);
+    divisao = dividir(numero);
+    printf("\t|Soma: %d\n" ,soma);
+    printf("\t|Subtração: %d\n" ,subtracao);
+    printf("\t|Multiplicação: %d\n" ,multiplicacao);
+    printf("\t|Divisão: %d\n" ,divisao);
+
+
+
+
+    return 0;
+}
