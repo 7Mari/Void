@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+int verificarPar (int numero[]){
+    int par = 0 ,i ,tam = 6;
+
+    for ( i = 0; i < tam; i++)
+    {
+        if (numero[i] % 2 == 0)
+        {
+            par++;
+        } 
+        
+    }
+            printf("\nQuantidade de pares: %d\n" ,par);
+    return par;
+}
+
+int verificarImpar (int numero[]){
+    int i ,impar = 0 ,tam = 6;
+
+    for ( i = 0; i < tam; i++)
+    {
+        if (numero[i] % 2 != 0)
+        {
+            impar++;
+        } 
+    }
+            printf("\nQuantidade de impares: %d\n" ,impar);
+    return impar;
+}
+
+void titulo(){
+    printf("\t\n--PAR === IMPAR--\n");
+}
+
+/////////////////////////////
+
+int main(){
+    setlocale(LC_ALL ,"portuguese");
+    int tam = 6;
+    int i, numero[tam];
+
+titulo();
+for ( i = 0; i < tam; i++)
+{
+    printf("Digite o %dº número: " ,i + 1);
+    scanf("%d" ,&numero[i]);
+}
+system("cls || clear");
+
+//exibir
+titulo();
+for ( i = 0; i < tam; i++)
+{
+    printf("%dº Número: %d\n" ,i + 1, numero[i]);
+}
+verificarImpar(numero);
+verificarPar(numero);
+
+
+    return 0;
+}
