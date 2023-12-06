@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+void titulo(){
+    printf("\n--Transformação de Metros para Cm--\n");
+}
+
+
+int transformaEmCm(numeroMetro){
+    int centimetros;
+    centimetros = numeroMetro * 100;
+    
+    return centimetros;
+}
+
+int main(){
+    setlocale(LC_ALL, "portuguese");
+
+    int numeroMetro;
+
+    printf("Digite um número: \n" );
+    scanf("%d" ,&numeroMetro);
+
+    system ("cls || clear");
+
+    //exibir
+
+    
+    printf("Comprimento Escolhido -metros-: %dm \n" ,numeroMetro);
+
+    titulo();                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    printf("|Número em Cm: %dcm \n" ,transformaEmCm(numeroMetro));
+
+
+
+
+    return 0;
+}
