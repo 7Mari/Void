@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include <windows.h>
+
+void titulo(){
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+
+    printf("\n\t-----------------------Desconto---------------------------------\n");
+    printf("\t|Valor igual ou acima de R$100 recebe ¨20 porcento¨ DE DESCONTO \n");
+    printf("\t|Valor abaixo de R$100 recebe ¨10 porcento¨  DE DESCONTO  \n");
+    printf("\t----------------------------------------------------------------\n\n");
+    
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+   
+}
+
+void receberDesconto(float numero){
+    float desconto;
+
+    if (numero >= 100)
+    {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        WORD saved_attributes;
+
+        /* Salvar estado atual */
+        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+        saved_attributes = consoleInfo.wAttributes;
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        desconto = numero - (numero * 20/100);
+        printf("|Valor Total: R$%.2f\n" ,desconto);
+
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        
+    } else {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        WORD saved_attributes;
+
+        /* Salvar estado atual */
+        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+        saved_attributes = consoleInfo.wAttributes;
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+
+        desconto = numero - (numero * 10/100);
+        printf("|Valor Total: R$%.2f\n" ,desconto);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+    }
+}
+
+int main(){
+    setlocale(LC_ALL ,"portuguese");
+    float numero;
+
+    titulo();
+    
+    printf("\nDigite o valor da compra: \n");
+    scanf("%f" ,&numero);
+    system("cls || clear");
+
+    titulo();
+    printf("\nValor inicial da compra: R$%.2f \n" ,numero);
+
+    receberDesconto(numero);
+
+    
+
+    return 0;
+}
+
+
+
+
+
+
+
+
