@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include <windows.h>
+
+float calcularMedia(float nota[]){
+    float soma = 0;
+    float media;
+    int i;
+
+    for ( i = 0; i < 3; i++)
+    {
+        soma += nota[i];
+    }
+    
+    media = soma /3;
+    soma = 0;
+    printf("\n---------------------------------------\n");
+    printf("Média: %.1f\n" ,media);
+
+    
+
+    if (media >= 7)
+    {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        WORD saved_attributes;
+
+        /* Salvar estado atual */
+        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+        saved_attributes = consoleInfo.wAttributes;
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+
+                printf("Aprovado! ^-^ \n");
+
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+    } else if (media >= 5)
+    {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        WORD saved_attributes;
+
+        /* Salvar estado atual */
+        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+        saved_attributes = consoleInfo.wAttributes;
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+
+                printf("Recuperação! o-o \n");
+
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+    } else {
+
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        WORD saved_attributes;
+
+        /* Salvar estado atual */
+        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+        saved_attributes = consoleInfo.wAttributes;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+
+                printf("Reprovado! T-T \n");
+
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+    }
+    
+    return media;
+}
+
+int main(){
+    setlocale(LC_ALL, "portuguese");
+
+    float nota[3];
+    int i;
+    char nome[200];
+
+    printf("Digite o nome do aluno: \n");
+    gets(nome);
+    for ( i = 0; i < 3; i++)
+    {
+        printf("Digite a %dº nota do aluno: \n" ,i+1);
+        scanf("%f" ,&nota[i]);
+    }
+    system("cls || clear");
+    //exibir
+
+    printf("Nome do Aluno(a): %s\n" ,nome);
+    for ( i = 0; i < 3; i++)
+    {
+        printf("\n%dº Nota: %.1f\n" ,i + 1, nota[i]);
+    }
+    
+
+    calcularMedia(nota);
+
+
+    return 0;
+}
