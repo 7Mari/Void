@@ -2,100 +2,68 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
-#include <windows.h>
 
-float calcularMedia(float nota[]){
+#define tam 2
+
+struct dados_alunos
+    {
+        char nome[200];
+        char data[10];
+        float nota[3];
+        float media;
+    };
+struct dados_alunos aluno[tam];
+
+float calcularMedia(struct dados_alunos *aluno){
     float soma = 0;
     float media;
-    int i;
+    int i ,j;
 
-    for ( i = 0; i < 3; i++)
+  for ( i = 0; i < tam; i++)
     {
-        soma += nota[i];
+        soma += aluno[i].nota[j];
     }
     
-    media = soma /3;
+    aluno[i].media = soma/tam;
     soma = 0;
-    printf("\n---------------------------------------\n");
-    printf("Média: %.1f\n" ,media);
-
-    
-
-    if (media >= 7)
+    if (aluno[i].media >= 7)
     {
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-        WORD saved_attributes;
-
-        /* Salvar estado atual */
-        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
-        saved_attributes = consoleInfo.wAttributes;
-
-        SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-
-                printf("Aprovado! ^-^ \n");
-
-        SetConsoleTextAttribute(hConsole, saved_attributes);
-    } else if (media >= 5)
+        printf("Aprovado! ^-^\n");
+    } else 
     {
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-        WORD saved_attributes;
-
-        /* Salvar estado atual */
-        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
-        saved_attributes = consoleInfo.wAttributes;
-
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
-
-                printf("Recuperação! o-o \n");
-
-        SetConsoleTextAttribute(hConsole, saved_attributes);
-    } else {
-
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-        WORD saved_attributes;
-
-        /* Salvar estado atual */
-        GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
-        saved_attributes = consoleInfo.wAttributes;
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-
-                printf("Reprovado! T-T \n");
-
-        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("Reprovado! T-T\n");
     }
     
-    return media;
-}
+     return aluno[i].media; 
+  }  
+
 
 int main(){
-    setlocale(LC_ALL, "portuguese");
-
-    float nota[3];
-    int i;
-    char nome[200];
-
-    printf("Digite o nome do aluno: \n");
-    gets(nome);
-    for ( i = 0; i < 3; i++)
+    setlocale(LC_ALL ,"portuguese");
+    int i, j;
+    
+    for ( i = 0; i < tam; i++)
     {
-        printf("Digite a %dº nota do aluno: \n" ,i+1);
-        scanf("%f" ,&nota[i]);
-    }
-    system("cls || clear");
-    //exibir
-
-    printf("Nome do Aluno(a): %s\n" ,nome);
-    for ( i = 0; i < 3; i++)
-    {
-        printf("\n%dº Nota: %.1f\n" ,i + 1, nota[i]);
+        printf("Digite o nome do %dº aluno: \n" ,i + 1);
+        gets(aluno[i].nome);
+        for ( j = 0; j < 3; j++)
+        {
+            printf("Digite a %dº nota: \n" ,j+1);
+            scanf("%f" ,&aluno[i].nota[j]);
+            
+        }
+      fflush(stdin);
+        system("cls || clear");
     }
     
-
-    calcularMedia(nota);
-
-
+for ( i = 0; i < tam; i++)
+{
+    printf("Nome do %dº Aluno: %s\n" , i + 1 ,aluno[i].nome);
+    printf("Média: %.1f\n" , calcularMedia(aluno));
+    
+    
+    printf(".....................................\n\n");
+}
+    
     return 0;
 }
